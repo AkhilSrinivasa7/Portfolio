@@ -3,20 +3,31 @@ export interface HobbyItem {
   title: string;
   category: string;
   icon: string;
-  watermark: "camera" | "code" | "puzzle" | "ai" | "audio" | "design";
+  watermark: "camera" | "code" | "puzzle" | "ai" | "audio" | "design" | "movie";
   tag: string;
   description: string;
+  theme?: "gryffindor" | "default";
 }
 
 export const hobbiesList: HobbyItem[] = [
   {
+    id: "cinema-movies",
+    title: "Watching Movies & Harry Potter Universe",
+    category: "Cinema & Lore",
+    icon: "🎬",
+    watermark: "movie",
+    tag: "Gryffindor & Potterhead ⚡",
+    description: "Devoted cinema enthusiast enchanted by the Harry Potter wizarding world, Gryffindor courage, Christopher Nolan non-linear time architectures, and epic John Williams & Hans Zimmer orchestral scores.",
+    theme: "gryffindor",
+  },
+  {
     id: "nature-photography",
-    title: "Nature & Wildlife Photography",
+    title: "Nature & Cloud Photography",
     category: "Visual Arts",
-    icon: "🌲",
+    icon: "☁️",
     watermark: "camera",
-    tag: "Aperture & Landscapes",
-    description: "Venturing into wilderness and mountain horizons with high-speed glass to capture wildlife, raw mist, and natural light.",
+    tag: "Skies & Landscapes",
+    description: "Venturing into high-altitude ridges and horizon lines to document fleeting tropospheric cloud formations, golden hour light, and raw natural mist.",
   },
   {
     id: "creative-code",
@@ -25,7 +36,7 @@ export const hobbiesList: HobbyItem[] = [
     icon: "⚡",
     watermark: "code",
     tag: "Canvas / Framer",
-    description: "Writing expressive algorithms, tactile web physics, micro-interactions, and high-performance frontend architectures.",
+    description: "Writing expressive algorithms, tactile web physics, micro-interactions, and high-performance frontend architectures with sensory feedback.",
   },
   {
     id: "algorithms",
@@ -43,7 +54,7 @@ export const hobbiesList: HobbyItem[] = [
     icon: "🤖",
     watermark: "ai",
     tag: "Agents & ADK",
-    description: "Architecting multi-agent tool loops, local LLM pipelines, multimodal reasoning workflows, and emergent intelligence.",
+    description: "Architecting multi-agent tool loops, local LLM pipelines, multimodal reasoning workflows, and emergent machine intelligence.",
   },
   {
     id: "ambient-audio",
@@ -53,14 +64,5 @@ export const hobbiesList: HobbyItem[] = [
     watermark: "audio",
     tag: "Lo-Fi & Synthesizers",
     description: "Curating binaural frequencies, atmospheric synthesizer pads, and lo-fi textures that induce deep technical flow states.",
-  },
-  {
-    id: "design-systems",
-    title: "Product Design & Typography",
-    category: "Design",
-    icon: "📐",
-    watermark: "design",
-    tag: "Figma & Brutalism",
-    description: "Studying Swiss grid systems, high-contrast dark aesthetics, intentional visual hierarchies, and responsive design systems.",
   },
 ];

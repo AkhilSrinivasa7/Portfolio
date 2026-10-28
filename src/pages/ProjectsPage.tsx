@@ -55,10 +55,16 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 relative z-10">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-14">
-          <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-lime">
-            <span className="h-px w-8 bg-brand-lime/60" />
+        {/* Header with Scroll Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14"
+        >
+          <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-amber-400">
+            <span className="h-px w-8 bg-amber-400/60" />
             Selected Portfolio
           </div>
           <h1 className="text-4xl sm:text-6xl font-bold font-display tracking-tight text-white">
@@ -67,7 +73,7 @@ export default function ProjectsPage() {
           <p className="mt-3 text-base text-white/60 max-w-2xl">
             Software systems, deep learning models, and human-centered digital experiences I've developed.
           </p>
-        </div>
+        </motion.div>
 
         {/* Project Cards Grid */}
         <div className="space-y-8">

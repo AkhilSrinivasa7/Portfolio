@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-5 text-xs font-mono font-bold uppercase tracking-wider text-white/70">
             <Link to="/about" className="hover:text-brand-lime transition-colors">About</Link>
             <Link to="/projects" className="hover:text-brand-lime transition-colors">Projects</Link>
-            <Link to="/gallery" className="hover:text-cyan-300 transition-colors">Clouds</Link>
+            <Link to="/cloud" className="hover:text-cyan-300 transition-colors">Clouds ☁️</Link>
             <Link to="/contact" className="hover:text-brand-lime transition-colors">Contact</Link>
           </div>
         </div>

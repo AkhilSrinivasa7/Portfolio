@@ -5,7 +5,7 @@ import AudioToggle from "./AudioToggle";
 const navLinks = [
   { path: "/about", label: "About" },
   { path: "/projects", label: "Projects" },
-  { path: "/gallery", label: "Clouds" },
+  { path: "/cloud", label: "Clouds" },
   { path: "/contact", label: "Contact" },
 ];
 
@@ -45,11 +45,11 @@ export default function Navbar() {
             SA
           </span>
           <div className="flex flex-col">
-            <span className="text-white font-display font-bold tracking-tight text-sm group-hover:text-brand-lime transition-colors">
+            <span className="text-white font-harry tracking-wider text-base group-hover:text-amber-300 transition-colors">
               Ch S S Akhil
             </span>
-            <span className="text-[10px] font-mono text-cyan-300/80 uppercase tracking-widest hidden sm:inline">
-              Clouds & Code
+            <span className="text-[10px] font-mono text-amber-300/80 uppercase tracking-widest hidden sm:inline">
+              Gryffindor & Code ⚡
             </span>
           </div>
         </Link>
@@ -69,8 +69,8 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                  {link.path === "/gallery" && (
-                    <span className="ml-1 text-[9px] text-amber-300">✦</span>
+                  {link.path === "/cloud" && (
+                    <span className="ml-1 text-[9px] text-cyan-300">☁️</span>
                   )}
                 </Link>
               </li>

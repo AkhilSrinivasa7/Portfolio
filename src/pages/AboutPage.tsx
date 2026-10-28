@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { hobbiesList } from "../data/hobbiesData";
 import HobbyCardSpotlight from "../components/HobbyCardSpotlight";
+import AnimatedName from "../components/AnimatedName";
 
 // Strictly the two requested skill sections
 const skillSections = [
@@ -139,6 +140,19 @@ function renderWatermarkIcon(type: string) {
           <path d="M2 12h20" />
         </svg>
       );
+    case "movie":
+      return (
+        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+          <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
+          <line x1="7" y1="2" x2="7" y2="22" />
+          <line x1="17" y1="2" x2="17" y2="22" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <line x1="2" y1="7" x2="7" y2="7" />
+          <line x1="2" y1="17" x2="7" y2="17" />
+          <line x1="17" y1="17" x2="22" y2="17" />
+          <line x1="17" y1="7" x2="22" y2="7" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -213,14 +227,7 @@ export default function AboutPage() {
             <div className="space-y-2">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white leading-[1.1]">
                 Hi, I'm{" "}
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block bg-gradient-to-r from-brand-lime via-cyan-300 via-50% to-emerald-400 bg-clip-text text-transparent font-extrabold animate-shimmer shimmer-bg drop-shadow-[0_0_25px_rgba(204,255,0,0.35)]"
-                >
-                  Ch Srinivasa Shanmukha Akhil
-                </motion.span>
+                <AnimatedName variant="hero" className="inline-block" />
               </h1>
             </div>
 
@@ -256,8 +263,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 2. SKILLS AND PROFICIENCIES (STRICTLY THE TWO SECTIONS USER REQUESTED) */}
-        <section>
+        {/* 2. SKILLS AND PROFICIENCIES */}
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="mb-10">
             <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-lime">
               <span className="h-px w-8 bg-brand-lime/60" />
@@ -300,10 +312,15 @@ export default function AboutPage() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* 3. EDUCATION SECTION */}
-        <section>
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="mb-10">
             <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-lime">
               <span className="h-px w-8 bg-brand-lime/60" />
@@ -350,10 +367,15 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* 4. VERIFIED CERTIFICATIONS */}
-        <section>
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="mb-10">
             <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-lime">
               <span className="h-px w-8 bg-brand-lime/60" />
@@ -395,20 +417,25 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        {/* 5. HOBBIES WITH WATERMARK BACKGROUND ICONS (User requested!) */}
-        <section>
+        {/* 5. HOBBIES WITH WATERMARK BACKGROUND ICONS */}
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="mb-10">
-            <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-brand-lime">
-              <span className="h-px w-8 bg-brand-lime/60" />
+            <div className="mb-3 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-amber-400">
+              <span className="h-px w-8 bg-amber-400/60" />
               Beyond The Terminal
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-white">
               Hobbies & Passions
             </h2>
             <p className="mt-2 text-sm text-white/60">
-              Exploring nature, crafting tactile code, and studying visual aesthetics.
+              Exploring cinema & Harry Potter lore, capturing clouds, and writing expressive code.
             </p>
           </div>
 
@@ -421,7 +448,7 @@ export default function AboutPage() {
               />
             ))}
           </div>
-        </section>
+        </motion.section>
       </div>
 
       {/* RESUME VIEWER MODAL */}
