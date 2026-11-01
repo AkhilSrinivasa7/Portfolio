@@ -12,7 +12,7 @@ import ScrollProgressBar from "./components/ScrollProgressBar";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
-import CloudPage from "./pages/CloudPage";
+import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 
 export default function App() {
@@ -27,7 +27,7 @@ export default function App() {
           {/* Real-time Hardware-Accelerated Top Scroll Progress Bar */}
           <ScrollProgressBar />
 
-          {/* Harry Potter Gryffindor Series Magic, Evasive Snitch & Lumos Maxima */}
+          {/* Harry Potter Gryffindor Series Magic & Evasive Snitch */}
           <HarryPotterMagic />
 
           {/* Sensory Noise Background */}
@@ -43,8 +43,8 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/cloud" element={<CloudPage />} />
-              <Route path="/gallery" element={<Navigate to="/cloud" replace />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/cloud" element={<Navigate to="/gallery" replace />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

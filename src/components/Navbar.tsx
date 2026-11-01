@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import AudioToggle from "./AudioToggle";
 
 const navLinks = [
   { path: "/about", label: "About" },
   { path: "/projects", label: "Projects" },
-  { path: "/cloud", label: "Clouds" },
+  { path: "/gallery", label: "Moments" },
   { path: "/contact", label: "Contact" },
 ];
 
@@ -41,15 +40,19 @@ export default function Navbar() {
           to="/"
           className="group flex items-center gap-3 text-sm font-semibold tracking-wide"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-lime text-brand-dark font-display font-bold text-sm shadow-[0_0_15px_rgba(204,255,0,0.3)] transition-transform group-hover:scale-105">
-            SA
-          </span>
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white p-0.5 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-transform group-hover:scale-105 overflow-hidden">
+            <img
+              src="/as-logo.jpg"
+              alt="AS Logo"
+              className="h-full w-full object-contain"
+            />
+          </div>
           <div className="flex flex-col">
-            <span className="text-white font-harry tracking-wider text-base group-hover:text-amber-300 transition-colors">
+            <span className="text-white font-display font-bold tracking-tight text-sm group-hover:text-brand-lime transition-colors">
               Ch S S Akhil
             </span>
-            <span className="text-[10px] font-mono text-amber-300/80 uppercase tracking-widest hidden sm:inline">
-              Gryffindor & Code ⚡
+            <span className="text-[10px] font-mono text-cyan-300/80 uppercase tracking-widest hidden sm:inline">
+              Clouds & Code
             </span>
           </div>
         </Link>
@@ -69,19 +72,14 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                  {link.path === "/cloud" && (
-                    <span className="ml-1 text-[9px] text-cyan-300">☁️</span>
-                  )}
                 </Link>
               </li>
             );
           })}
         </ul>
 
-        {/* Right Actions: Audio Toggle & Contact CTA */}
+        {/* Right Actions: Contact CTA */}
         <div className="flex items-center gap-3">
-          <AudioToggle />
-
           <Link
             to="/contact"
             className="magnetic-hover hidden rounded-xl bg-brand-lime px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-brand-dark transition-all hover:bg-white md:inline-block shadow-[0_0_15px_rgba(204,255,0,0.25)]"

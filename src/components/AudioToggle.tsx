@@ -1,66 +1,82 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function AudioToggle() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    const audio = new Audio("/audio/ambient-drift.wav");
-    audio.loop = true;
-    audio.volume = 0.28; // soothing ambient background level
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-      audio.src = "";
-    };
-  }, []);
-
-  const toggleSound = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      audio.play().then(() => setIsPlaying(true)).catch(() => {
-        // Autoplay policy or error
-        setIsPlaying(false);
-      });
-    }
-  };
 
   return (
-    <button
-      onClick={toggleSound}
-      title={isPlaying ? "Mute ambient sound" : "Play ambient sound"}
-      className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-mono backdrop-blur-md transition-all hover:border-brand-lime hover:bg-white/[0.08]"
-    >
-      <div className="flex items-end gap-[2px] h-3">
-        <span
-          className={`w-[2px] bg-brand-lime rounded-full transition-all ${
-            isPlaying ? "h-3 animate-pulse" : "h-1 opacity-40"
-          }`}
-          style={{ animationDuration: "0.6s" }}
+    <div className="flex flex-col items-start gap-2">
+      <button
+        onClick={() => setIsPlaying((p) => !p)}
+        className={`group flex items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-mono transition-all cursor-pointer ${
+          isPlaying
+            ? "border-[#1db954] bg-[#1db954]/15 text-[#1db954] shadow-[0_0_15px_rgba(29,185,84,0.3)]"
+            : "border-white/15 bg-white/5 text-white/80 hover:border-[#1db954] hover:text-white hover:bg-white/10"
+        }`}
+      >
+        {/* Official Spotify Icon */}
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spotify/spotify-original.svg"
+          alt="Spotify"
+          className="w-4 h-4 object-contain"
         />
-        <span
-          className={`w-[2px] bg-brand-lime rounded-full transition-all ${
-            isPlaying ? "h-2.5 animate-pulse" : "h-1 opacity-40"
-          }`}
-          style={{ animationDuration: "0.9s", animationDelay: "0.15s" }}
-        />
-        <span
-          className={`w-[2px] bg-brand-lime rounded-full transition-all ${
-            isPlaying ? "h-3.5 animate-pulse" : "h-1 opacity-40"
-          }`}
-          style={{ animationDuration: "0.75s", animationDelay: "0.3s" }}
-        />
-      </div>
 
-      <span className="hidden sm:inline text-white/60 group-hover:text-white transition-colors text-[11px] uppercase tracking-wider font-bold">
-        {isPlaying ? "Ambient On" : "Sound"}
-      </span>
-    </button>
+        {/* Live Audio Equalizer Waves */}
+        <div className="flex items-end gap-[2px] h-3">
+          <span
+            className={`w-[2px] rounded-full transition-all ${
+              isPlaying ? "h-3 bg-[#1db954] animate-pulse" : "h-1.5 bg-white/40"
+            }`}
+            style={{ animationDuration: "0.6s" }}
+          />
+          <span
+            className={`w-[2px] rounded-full transition-all ${
+              isPlaying ? "h-2 bg-[#1db954] animate-pulse" : "h-1 bg-white/40"
+            }`}
+            style={{ animationDuration: "0.9s", animationDelay: "0.15s" }}
+          />
+          <span
+            className={`w-[2px] rounded-full transition-all ${
+              isPlaying ? "h-3.5 bg-[#1db954] animate-pulse" : "h-2 bg-white/40"
+            }`}
+            style={{ animationDuration: "0.75s", animationDelay: "0.3s" }}
+          />
+        </div>
+
+        <span className="font-bold uppercase tracking-wider">
+          {isPlaying ? "Playing Track" : "Play Featured Song"}
+        </span>
+
+        <span className="text-[10px] text-white/50 hidden sm:inline">
+          • Die With A Smile
+        </span>
+      </button>
+
+      {/* Direct Player Stream (Mounts & Plays Directly on Click) */}
+      <AnimatePresence>
+        {isPlaying && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -4 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -4 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="w-full max-w-sm pt-1 overflow-hidden"
+          >
+            <div className="rounded-xl overflow-hidden border border-[#1db954]/40 shadow-2xl bg-black">
+              <iframe
+                style={{ borderRadius: "12px" }}
+                src="https://open.spotify.com/embed/track/76BCdlzWPijEvCyi70tOwe?utm_source=generator&theme=0&autoplay=1"
+                width="100%"
+                height="80"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="eager"
+                title="Die With A Smile - Lady Gaga & Bruno Mars"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
