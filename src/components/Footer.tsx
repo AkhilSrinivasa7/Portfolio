@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { socialLinks } from "../data/socialLinks";
+import AudioToggle from "./AudioToggle";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -13,9 +14,13 @@ export default function Footer() {
           {/* Brand Info */}
           <div>
             <div className="flex items-center gap-2.5 mb-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-lime text-brand-dark font-display font-bold text-xs">
-                SA
-              </span>
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white p-0.5 shadow-sm overflow-hidden">
+                <img
+                  src="/as-logo.jpg"
+                  alt="AS Logo"
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <span className="text-white font-display font-bold text-base">
                 Ch Srinivasa Shanmukha Akhil
               </span>
@@ -29,9 +34,17 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-5 text-xs font-mono font-bold uppercase tracking-wider text-white/70">
             <Link to="/about" className="hover:text-brand-lime transition-colors">About</Link>
             <Link to="/projects" className="hover:text-brand-lime transition-colors">Projects</Link>
-            <Link to="/cloud" className="hover:text-cyan-300 transition-colors">Clouds ☁️</Link>
+            <Link to="/gallery" className="hover:text-brand-lime transition-colors">Some Moments</Link>
             <Link to="/contact" className="hover:text-brand-lime transition-colors">Contact</Link>
           </div>
+        </div>
+
+        {/* Featured Soundtrack Player */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-1">
+          <AudioToggle />
+          <span className="text-[11px] font-mono text-white/40 hidden sm:inline">
+            Direct Spotify Stream • Lady Gaga & Bruno Mars
+          </span>
         </div>
 
         {/* Bottom Social Bar & Copyright */}

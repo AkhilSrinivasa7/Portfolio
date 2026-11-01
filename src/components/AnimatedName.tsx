@@ -5,6 +5,7 @@ interface AnimatedNameProps {
   className?: string;
   showSubtitle?: boolean;
   variant?: "hero" | "header" | "pill";
+  noWrap?: boolean;
 }
 
 const FULL_NAME = "Ch Srinivasa Shanmukha Akhil";
@@ -13,6 +14,7 @@ export default function AnimatedName({
   className = "",
   showSubtitle = false,
   variant = "hero",
+  noWrap = false,
 }: AnimatedNameProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -49,7 +51,7 @@ export default function AnimatedName({
                 ease: "easeInOut",
                 delay: i * 0.05,
               }}
-              className="inline-block whitespace-pre font-harry text-base sm:text-lg tracking-wider"
+              className="inline-block whitespace-pre font-display font-bold text-sm tracking-wide"
             >
               {char}
             </motion.span>
@@ -65,7 +67,7 @@ export default function AnimatedName({
   return (
     <div className={`relative inline-block select-none ${className}`}>
       {/* Continuous Kinetic Letter Wave */}
-      <div className="flex flex-wrap items-center">
+      <div className={`items-center ${noWrap ? "inline-flex whitespace-nowrap" : "flex flex-wrap"}`}>
         {letters.map((char, index) => {
           const isSpace = char === " ";
           const isHovered = hoveredIndex === index;
@@ -96,7 +98,7 @@ export default function AnimatedName({
                       delay: index * 0.06,
                     }
               }
-              className={`inline-block font-harry text-3xl sm:text-5xl lg:text-6xl tracking-wider cursor-pointer transition-colors duration-200 ${
+              className={`inline-block font-display font-black tracking-tight cursor-pointer transition-colors duration-200 ${
                 isSpace ? "w-3 sm:w-4" : ""
               }`}
               style={{
@@ -113,18 +115,19 @@ export default function AnimatedName({
         })}
       </div>
 
-      {/* Ambient Luminescent Glow Underline */}
-      <div className="relative mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
+      {/* Ambient Luminescent Glow Underline - Buttery Smooth Hardware-Accelerated */}
+      <div className="relative mt-2.5 h-[3px] w-full overflow-hidden rounded-full bg-white/10">
         <motion.div
           animate={{
-            x: ["-100%", "100%"],
+            x: ["-100%", "250%"],
           }}
           transition={{
-            duration: 2.5,
+            duration: 3.2,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear",
           }}
-          className="h-full w-1/2 bg-gradient-to-r from-transparent via-amber-400 to-transparent blur-[1px]"
+          style={{ willChange: "transform" }}
+          className="h-full w-2/5 bg-gradient-to-r from-transparent via-amber-400/90 to-transparent blur-[0.5px] shadow-[0_0_10px_#eeba30]"
         />
       </div>
 

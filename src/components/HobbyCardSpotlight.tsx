@@ -76,13 +76,21 @@ export default function HobbyCardSpotlight({
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-5">
           <span
-            className={`flex h-12 w-12 items-center justify-center rounded-2xl border text-2xl group-hover:scale-110 transition-all ${
+            className={`flex items-center justify-center rounded-2xl border transition-all ${
               isGryffindor
-                ? "bg-amber-500/10 border-amber-500/30 group-hover:shadow-[0_0_15px_rgba(238,186,48,0.4)]"
-                : "bg-white/5 border-white/10 group-hover:shadow-[0_0_15px_rgba(204,255,0,0.3)]"
+                ? "h-14 w-14 bg-amber-950/30 border-amber-500/40 p-1.5 shadow-[0_0_18px_rgba(238,186,48,0.35)] group-hover:scale-105"
+                : "h-12 w-12 bg-white/5 border-white/10 p-2.5 group-hover:shadow-[0_0_15px_rgba(204,255,0,0.3)] group-hover:scale-110"
             }`}
           >
-            {hobby.icon}
+            {hobby.iconImage ? (
+              <img
+                src={hobby.iconImage}
+                alt={hobby.title}
+                className="w-full h-full object-contain filter drop-shadow"
+              />
+            ) : (
+              <span className="text-2xl">{hobby.icon}</span>
+            )}
           </span>
           <span
             className={`rounded-full border px-3 py-1 text-[11px] font-mono transition-colors ${

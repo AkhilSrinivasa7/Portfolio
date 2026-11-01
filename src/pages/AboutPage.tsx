@@ -1,8 +1,22 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { hobbiesList } from "../data/hobbiesData";
 import HobbyCardSpotlight from "../components/HobbyCardSpotlight";
 import AnimatedName from "../components/AnimatedName";
+
+// Replace with external Google Drive / document link when provided
+const VIEW_RESUME_LINK = "/resume.pdf";
+
+const skillIconMap: Record<string, string> = {
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  "Git & GitHub Workflows": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "SQL & Database Architecture": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  Figma: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  Canva: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg",
+};
 
 // Strictly the two requested skill sections
 const skillSections = [
@@ -41,8 +55,9 @@ const education = [
     school: "Vignan's Foundation for Science, Technology and Research",
     degree: "B.Tech — Computer Science & Engineering",
     period: "2024 — Present",
-    detail: "Focus areas: Software Engineering · AI/ML · Data Structures & Algorithms · Web Technologies · Database Management",
-    highlight: "Active contributor in developer clubs and technical hackathons.",
+    cgpa: "8.62",
+    detail: "Current CGPA: 8.62 · Focus areas: Software Engineering · AI/ML · Data Structures & Algorithms · Web Technologies · Database Management",
+    highlight: "Current CGPA: 8.62 · Active contributor in developer clubs and technical hackathons.",
   },
   {
     school: "Tapasya Junior College",
@@ -66,30 +81,35 @@ const certs = [
     issuer: "Oracle",
     date: "2025",
     logo: "/images/oracle.png",
+    link: "https://www.linkedin.com/in/srinivasa-shanmukha-akhil-c-763399349/details/certifications/",
   },
   {
     name: "Engineer AI Agents with Agent Development Kit (ADK)",
     issuer: "Google",
     date: "2024",
     logo: "/images/google.png",
+    link: "https://www.linkedin.com/in/srinivasa-shanmukha-akhil-c-763399349/details/certifications/",
   },
   {
     name: "AI Fundamentals Certification",
     issuer: "DataCamp",
     date: "Feb 2026",
     logo: "/images/datacamp.png",
+    link: "https://www.linkedin.com/in/srinivasa-shanmukha-akhil-c-763399349/details/certifications/",
   },
   {
     name: "GEN AI BOOTCAMP",
     issuer: "Outskill",
     date: "May 2026",
     logo: "/images/outskill.png",
+    link: "https://www.linkedin.com/in/srinivasa-shanmukha-akhil-c-763399349/details/certifications/",
   },
   {
     name: "Preliminary English Test (PET)",
     issuer: "Cambridge Assessment",
     date: "Certified",
     logo: "/images/cambridge.png",
+    link: "https://www.linkedin.com/in/srinivasa-shanmukha-akhil-c-763399349/details/certifications/",
   },
 ];
 
@@ -159,8 +179,6 @@ function renderWatermarkIcon(type: string) {
 }
 
 export default function AboutPage() {
-  const [showResumeModal, setShowResumeModal] = useState(false);
-
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 relative z-10">
       <div className="mx-auto max-w-6xl space-y-24">
@@ -196,22 +214,31 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* RESUME OPTIONS DIRECTLY BELOW PHOTOGRAPH (User requested!) */}
+            {/* RESUME OPTIONS DIRECTLY BELOW PHOTOGRAPH (2D Icons, Opens in New Tab) */}
             <div className="mt-6 w-full max-w-sm flex items-center gap-3">
-              <button
-                onClick={() => setShowResumeModal(true)}
-                className="flex-1 rounded-xl bg-brand-lime px-4 py-3 text-xs font-mono font-bold uppercase tracking-wider text-brand-dark transition-all hover:bg-white flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(204,255,0,0.3)]"
+              <a
+                href={VIEW_RESUME_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 rounded-xl bg-brand-lime px-4 py-3 text-xs font-mono font-bold uppercase tracking-wider text-brand-dark transition-all hover:bg-white flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(204,255,0,0.3)] text-center cursor-pointer"
               >
-                <span>👁</span>
+                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
                 <span>View Resume</span>
-              </button>
+              </a>
 
               <a
                 href="/resume.pdf"
                 download="Ch_Srinivasa_Shanmukha_Akhil_Resume.pdf"
                 className="flex-1 rounded-xl border border-white/20 glass px-4 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white transition-all hover:border-brand-lime hover:text-brand-lime hover:bg-brand-lime/10 flex items-center justify-center gap-2 text-center"
               >
-                <span>📥</span>
+                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
                 <span>Download Resume</span>
               </a>
             </div>
@@ -224,10 +251,14 @@ export default function AboutPage() {
               About Myself
             </div>
 
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white leading-[1.1]">
-                Hi, I'm{" "}
-                <AnimatedName variant="hero" className="inline-block" />
+            <div className="space-y-3">
+              <h1 className="font-bold font-display tracking-tight text-white leading-tight">
+                <span className="block text-3xl sm:text-4xl lg:text-5xl text-white">
+                  Hi, I'm
+                </span>
+                <span className="block mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl whitespace-nowrap overflow-x-auto sm:overflow-visible">
+                  <AnimatedName variant="hero" noWrap className="inline-block" />
+                </span>
               </h1>
             </div>
 
@@ -300,14 +331,25 @@ export default function AboutPage() {
                 </h3>
 
                 <div className="flex flex-wrap gap-2.5">
-                  {sec.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/80 font-medium hover:border-brand-lime hover:bg-brand-lime/10 hover:text-brand-lime transition-all cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                  {sec.skills.map((skill) => {
+                    const iconUrl = skillIconMap[skill];
+                    return (
+                      <span
+                        key={skill}
+                        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-sm text-white/80 font-medium hover:border-brand-lime hover:bg-brand-lime/10 hover:text-brand-lime transition-all cursor-default"
+                      >
+                        {iconUrl && (
+                          <img
+                            src={iconUrl}
+                            alt=""
+                            className="w-4 h-4 object-contain shrink-0"
+                            loading="lazy"
+                          />
+                        )}
+                        <span>{skill}</span>
+                      </span>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}
@@ -337,8 +379,11 @@ export default function AboutPage() {
           <div className="relative border-l border-white/10 pl-6 sm:pl-10 ml-3 sm:ml-4 space-y-10">
             {education.map((edu) => (
               <div key={edu.school} className="relative group">
-                <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-brand-dark group-hover:border-brand-lime transition-colors">
-                  <div className="h-2 w-2 rounded-full bg-brand-lime group-hover:scale-125 transition-transform" />
+                <div className="absolute -left-[35px] sm:-left-[51px] top-1 flex h-8 w-8 items-center justify-center rounded-xl border border-white/20 bg-[#0d0d12] shadow-md group-hover:border-brand-lime transition-all p-1.5">
+                  <svg className="w-full h-full text-brand-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                  </svg>
                 </div>
 
                 <div className="rounded-3xl border border-white/10 glass p-6 sm:p-8 hover:border-brand-lime/50 transition-all">
@@ -346,9 +391,16 @@ export default function AboutPage() {
                     <h3 className="text-2xl font-bold font-display text-white">
                       {edu.school}
                     </h3>
-                    <span className="rounded-full border border-brand-lime/30 bg-brand-lime/10 px-3 py-1 text-xs font-mono font-bold text-brand-lime">
-                      {edu.period}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      {edu.cgpa && (
+                        <span className="rounded-full border border-brand-lime/40 bg-brand-lime/10 px-3 py-1 text-xs font-mono font-bold text-brand-lime">
+                          CGPA: {edu.cgpa}
+                        </span>
+                      )}
+                      <span className="rounded-full border border-brand-lime/30 bg-brand-lime/10 px-3 py-1 text-xs font-mono font-bold text-brand-lime">
+                        {edu.period}
+                      </span>
+                    </div>
                   </div>
 
                   <p className="text-base font-bold text-white/80 uppercase tracking-wide font-display mb-3">
@@ -410,9 +462,20 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-brand-lime">
-                  <span>Verified Credential</span>
-                  <span>✓</span>
+                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                  <span className="text-brand-lime flex items-center gap-1.5">
+                    <span>Verified Credential</span>
+                    <span>✓</span>
+                  </span>
+                  <a
+                    href={c.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-white/70 hover:text-brand-lime transition-colors underline underline-offset-4"
+                  >
+                    <span>Check Certification</span>
+                    <span>↗</span>
+                  </a>
                 </div>
               </div>
             ))}
@@ -435,11 +498,11 @@ export default function AboutPage() {
               Hobbies & Passions
             </h2>
             <p className="mt-2 text-sm text-white/60">
-              Exploring cinema & Harry Potter lore, capturing clouds, and writing expressive code.
+              Exploring cinema & Harry Potter lore, capturing nature, and exploring design tools.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl">
             {hobbiesList.map((hobby) => (
               <HobbyCardSpotlight
                 key={hobby.id}
@@ -450,95 +513,6 @@ export default function AboutPage() {
           </div>
         </motion.section>
       </div>
-
-      {/* RESUME VIEWER MODAL */}
-      <AnimatePresence>
-        {showResumeModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowResumeModal(false)}
-            className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-2xl"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[90vh] max-w-4xl w-full rounded-3xl overflow-hidden border border-white/20 glass bg-brand-dark p-6 sm:p-8 flex flex-col"
-            >
-              {/* Modal Top Bar */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold font-display text-white">
-                    Resume — Ch Srinivasa Shanmukha Akhil
-                  </h3>
-                  <p className="text-xs font-mono text-brand-lime mt-1">
-                    B.Tech Computer Science & Engineering
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="/resume.pdf"
-                    download="Ch_Srinivasa_Shanmukha_Akhil_Resume.pdf"
-                    className="rounded-xl bg-brand-lime px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-brand-dark hover:bg-white transition-colors"
-                  >
-                    Download PDF 📥
-                  </a>
-                  <button
-                    onClick={() => setShowResumeModal(false)}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-rose-500 transition-colors"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-
-              {/* Digital Resume Preview Content */}
-              <div className="overflow-y-auto space-y-6 pr-2 text-sm text-white/80 max-h-[65vh]">
-                <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.02]">
-                  <h4 className="text-lg font-bold font-display text-white mb-2">Summary</h4>
-                  <p className="text-white/70 leading-relaxed text-sm">
-                    Computer Science undergraduate passionate about building systems that think and experiences that feel. Experienced in Python, Java, JavaScript, TypeScript, Deep Learning architectures (CNNs, Vision Transformers), fullstack web engineering (React, Node, Tailwind), and sensory product design. Active nature photographer with sharp attention to aesthetics.
-                  </p>
-                </div>
-
-                <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.02]">
-                  <h4 className="text-lg font-bold font-display text-white mb-3">Education</h4>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="font-bold text-white">Vignan's Foundation for Science, Technology and Research</div>
-                      <div className="text-brand-lime text-xs font-mono">B.Tech — Computer Science & Engineering | 2024 — Present</div>
-                      <div className="text-xs text-white/60 mt-1">Focus: Software Engineering, Machine Learning, Data Structures, Web Systems</div>
-                    </div>
-                    <div>
-                      <div className="font-bold text-white">Tapasya Junior College</div>
-                      <div className="text-brand-lime text-xs font-mono">Board of Intermediate Education (MPC) | 2022 — 2024</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.02]">
-                  <h4 className="text-lg font-bold font-display text-white mb-3">Key Projects</h4>
-                  <div className="space-y-3 text-xs">
-                    <div>
-                      <span className="font-bold text-white text-sm">SynapseFlow</span> — AI-powered knowledge synthesis and second brain application.
-                    </div>
-                    <div>
-                      <span className="font-bold text-white text-sm">ConsistencyOS</span> — Modern personal wellness and daily habit analytics tracker.
-                    </div>
-                    <div>
-                      <span className="font-bold text-white text-sm">Diabetic Retinopathy Classification</span> — Clinical deep learning CNN model for retinal photograph evaluation.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

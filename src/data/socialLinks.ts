@@ -6,6 +6,7 @@ export interface SocialLink {
   icon: string;
   color: string;
   description: string;
+  logoUrl: string;
 }
 
 export const socialLinks: SocialLink[] = [
@@ -17,6 +18,7 @@ export const socialLinks: SocialLink[] = [
     icon: "linkedin",
     color: "#0a66c2",
     description: "Professional updates, career journey & connections",
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg",
   },
   {
     id: "github",
@@ -26,6 +28,7 @@ export const socialLinks: SocialLink[] = [
     icon: "github",
     color: "#ccff00",
     description: "Open-source repositories, experiments & commits",
+    logoUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
   },
   {
     id: "leetcode",
@@ -35,6 +38,7 @@ export const socialLinks: SocialLink[] = [
     icon: "leetcode",
     color: "#ffa116",
     description: "Data structures, algorithms & problem solving",
+    logoUrl: "https://cdn.simpleicons.org/leetcode/FFA116",
   },
   {
     id: "mail",
@@ -44,5 +48,6 @@ export const socialLinks: SocialLink[] = [
     icon: "mail",
     color: "#ea4335",
     description: "Direct outreach, collaborations & opportunities",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg",
   },
 ];
